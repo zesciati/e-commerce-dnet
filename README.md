@@ -5,6 +5,8 @@
 - bun
 - tailwind
 
+### Naming convention use PascalCase
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
