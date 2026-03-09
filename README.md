@@ -5,12 +5,18 @@
 - bun
 - tailwind
 
-- Naming convention use PascalCase
+# Naming convention
+- PascalCase
+
+# File dan konten
+- menu login: src\LoginPage.tsx 
+- menu customer: src\MenuCustomerPage.tsx
+- menu transaksi pembelian paket oleh per masing-masing customer: src\CustomerPackagePurchase.tsx
 
 # Tanggal Mulai dan Tanggal Selesai
 - start: 8/03/2026  
 
-# React + TypeScript + Vite
+<!-- # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
@@ -83,4 +89,4 @@ export default defineConfig([
   },
 ])
 ```
-
+ -->
