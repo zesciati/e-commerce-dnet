@@ -5,7 +5,7 @@
 - bun
 - tailwind
 
-### Naming convention use PascalCase
+- Naming convention use PascalCase
 
 # React + TypeScript + Vite
 
