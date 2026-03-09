@@ -19,7 +19,7 @@ const LoginPage = () => {
   };
   return (
     <Container maxWidth="xs">
-      <Paper elevation={10} sx={{ marginTop: 8, padding: 2 }}>
+      <Paper elevation={10} sx={{ marginTop: 8, padding: 2}}>
         <Avatar
           sx={{
             mx: "auto",
@@ -52,7 +52,7 @@ const LoginPage = () => {
             label="Remember me"
           />
           <Button type="submit" variant="contained" fullWidth sx={{mt: 1}}>
-            Sign in
+            Login
           </Button>
         </Box>
       </Paper>
