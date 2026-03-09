@@ -6,7 +6,7 @@
 - tailwind
 
 # Reactstack
-- React router dom
+- React router dom: App.tsx digunakan untuk sehingga otomatis redirect
 
 # Naming convention
 - PascalCase
