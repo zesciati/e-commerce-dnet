@@ -13,9 +13,14 @@ import {
   Button
 } from "@mui/material";
 
+import { useNavigate } from "react-router-dom";
+
 const LoginPage = () => {
+  const navigate = useNavigate();
+
   const handleSubmit = () => {
-    console.log("login");
+    // console.log("login");
+    navigate("/menucustomer");
   };
   return (
     <Container maxWidth="xs">
@@ -31,9 +36,9 @@ const LoginPage = () => {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5" sx={{ textAlign: "center" }}>
-          Sign In
+          Log In
         </Typography>
-        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+        <Box component="form"  noValidate sx={{ mt: 1 }} /* onSubmit={handleSubmit} */>
           <TextField
             placeholder="Enter username"
             fullWidth
@@ -51,7 +56,7 @@ const LoginPage = () => {
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
           />
-          <Button type="submit" variant="contained" fullWidth sx={{mt: 1}}>
+          <Button type="submit" variant="contained"  fullWidth sx={{mt: 1}} onClick={handleSubmit} >
             Login
           </Button>
         </Box>

@@ -7,6 +7,7 @@
 
 # Reactstack
 - React router dom: App.tsx digunakan untuk sehingga otomatis redirect
+- useNavigate: LoginPage.tsx untuk button login ke menucustomer dengan url menucustomer 
 
 # Naming convention
 - PascalCase
@@ -18,6 +19,17 @@
 
 # Tanggal Mulai dan Tanggal Selesai
 - start: 8/03/2026  
+
+# URL FE dan Json Server
+FE            : http://localhost:5173
+Json-server   : http://localhost:3000
+
+# langkah
+- klik button login 
+- menghasilkan url routing MenuCustomerPage.tsx
+
+# Referensi
+- Supercharge Your React App: Master CRUD Operations with Axios, Router & JSON Server - https://youtu.be/SYv61aPSiOo
 
 <!-- # React + TypeScript + Vite
 
