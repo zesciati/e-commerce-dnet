@@ -1,36 +1,36 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-// import './App.css'
-import './style.css'
+// import { LockOutlinedIcon } from "@mui/icons-material/LockOutlined";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import { Container, Paper, Avatar, Typography, Box } from "@mui/material";
 
-function App() {
-  const [count, setCount] = useState(0)
-
+const LoginPage = () => {
+  const handleSubmit = () =>{
+    console.log('login')
+  }
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1 className='text-amber-700 text-9xl'>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <Container maxWidth="xs">
+      <Paper elevation={10} sx={{ marginTop: 8, padding: 2 }}>
+        <Avatar
+          sx={{
+            mx: "auto",
+            bgcolor: "secondary.main",
+            textAlign: "center",
+            mb: 1,
+          }}
+        >
+          <LockOutlinedIcon />
+        </Avatar>
+        <Typography component="h1" variant="h5" sx={{ textAlign: "center" }}>
+          Sign In
+        </Typography>
+        <Box
+          component="form"
+          onSubmit={handleSubmit}
+          noValidate
+          sx={{ mt: 1 }}
+        ></Box>
+      </Paper>
+    </Container>
+  );
+};
 
-export default App
+export default LoginPage;
