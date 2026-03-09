@@ -7,6 +7,9 @@
 
 - Naming convention use PascalCase
 
+# Tanggal Mulai dan Tanggal Selesai
+- start: 8/03/2026  
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
