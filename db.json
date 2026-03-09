@@ -1,0 +1,36 @@
+{
+  "posts": [
+    {
+      "id": "1",
+      "title": "a title"
+    },
+    {
+      "id": "2",
+      "title": "another title"
+    },
+    {
+      "id": "bbc5",
+      "title": "haloha"
+    },
+    {
+      "id": "4",
+      "title": "fourthhaloha"
+    }
+  ],
+  "comments": [
+    {
+      "id": "1",
+      "text": "a comment about post 1",
+      "postId": "1"
+    },
+    {
+      "id": "2",
+      "text": "a comment about post 1",
+      "postId": "1"
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "$schema": "./node_modules/json-server/schema.json"
+}
