@@ -32,17 +32,18 @@ const CustomerPackagePurchasePage = () => {
     namaPaket: string;
     harga: string;
   }
-  // useState digunakan untuk display data di FE
-  const [users, setUsers] = useState<User[]>([]);
-  const [namapaket, setNamaPaket] = useState('');
-  const [harga, setHarga] = useState('');
 
+  // hook to displaying data
+  const [users, setUsers] = useState<User[]>([]);
+  // hook to adding data
+  const [namaPaket, setNamaPaket] = useState("");
+  const [harga, setHarga] = useState("");
 
   /* ------------------------------------ How to Call API ----------------------------------- */
-  // data ini bisa kita keluarkan ya atau kita Panggil otomatis menggunakan use effect untuk muncul di console.log
+  
   useEffect(() => {
     getAllData();
-  }, []); // [] menghentikan render terus menerus, agar terpanggil sekali saja
+  }, []); 
 
   const getAllData = async () => {
     const response = await axios.get(API_URL);
@@ -51,13 +52,17 @@ const CustomerPackagePurchasePage = () => {
   };
 
   /* ------------------------------- Add Data ------------------------------ */
-const addData = () => {
-  // tangkap dan tampilkan datanya 
+  const addData = async (e: React.ChangeEvent<any>) => {
+    e.preventDefault();
+    if (!namaPaket || !harga) {
+      return;
+    }
 
-  if(!namapaket || !harga){
-    return;
-  }
-}
+    const response =  await axios.post(API_URL, { namaPaket, harga });
+    setNamaPaket('');
+    setHarga('');
+    getAllData();
+  };
 
   return (
     <div
@@ -86,27 +91,22 @@ const addData = () => {
               name="cars"
               id="package"
               className="w-full bg-zinc-900 border border-zinc-700 rounded-xl px-4 py-3 text-sm text-zinc-100 placeholder-zinc-600 focus:outline-none focus:border-zinc-400 transition"
-              value={namapaket}
+              value={namaPaket}
               onChange={(e) => setNamaPaket(e.target.value)}
             >
               <option value="" selected disabled className="hidden">
                 Please select package
               </option>
-              <option value="basic">Paket Basic</option>
-              <option value="premium">Paket Premium</option>
-              <option value="vip">Paket VIP</option>
+              <option value="Paket Basic">Paket Basic</option>
+              <option value="Paket Premium">Paket Premium</option>
+              <option value="Paket VIP">Paket VIP</option>
             </select>
-            {/* <input
-              type="text"
-              placeholder="Nama paket"
-              className="w-full bg-zinc-900 border border-zinc-700 rounded-xl px-4 py-3 text-sm text-zinc-100 placeholder-zinc-600 focus:outline-none focus:border-zinc-400 transition"
-            /> */}
             <input
               type="number"
               placeholder="Harga"
               className="w-full bg-zinc-900 border border-zinc-700 rounded-xl px-4 py-3 text-sm text-zinc-100 placeholder-zinc-600 focus:outline-none focus:border-zinc-400 transition"
               value={harga}
-              onChange={(e)=> setHarga(e.target.value)}
+              onChange={(e) => setHarga(e.target.value)}
             />
             <button
               type="submit"

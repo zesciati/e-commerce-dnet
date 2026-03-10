@@ -1,6 +1,7 @@
-connecting API to FE:
-  ✔ npm install axios @done(26-03-10 10:36)
-  ✔ const api_url @done(26-03-10 10:51)
-  ✔ Display Data @done(26-03-10 14:04)
-  ☐ add Data
-  
+
+✔ npm install axios @done(26-03-10 10:36)
+✔ const api_url @done(26-03-10 10:51)
+✔ Display Data @done(26-03-10 14:04)
+✔ add Data @done(26-03-10 21:40)
+☐ 12000 menjadi 12.000 pada hasil akhir
+☐ arrow select diperbaiki 
