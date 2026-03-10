@@ -24,12 +24,27 @@
 FE            : http://localhost:5173
 Json-server   : http://localhost:3000
 
-# langkah
-- klik button login 
-- menghasilkan url routing MenuCustomerPage.tsx
 
-# Referensi
-- Supercharge Your React App: Master CRUD Operations with Axios, Router & JSON Server - https://youtu.be/SYv61aPSiOo
+# CustomerPackagePurchasePage.tsx
+
+```js 
+
+// Definisikan dulu bentuk datanya
+interface User {
+  id: number
+  name: string
+  phone: string
+  email: string
+}
+
+// Lalu pakai sebagai tipe
+const [users, setUsers] = useState<User[]>([])
+//                                  ↑↑↑↑
+//                         array berisi objek User
+```
+Dengan ini TypeScript bisa bantu mendeteksi data yang diizinkan dan tidak diizinkan yang dikirim oleh API
+
+
 
 <!-- # React + TypeScript + Vite
 

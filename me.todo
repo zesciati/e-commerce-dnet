@@ -1,2 +1,6 @@
 connecting API to FE:
-  ☐ calling api
+  ✔ npm install axios @done(26-03-10 10:36)
+  ✔ const api_url @done(26-03-10 10:51)
+  ✔ Display Data @done(26-03-10 14:04)
+  ☐ add Data
+  

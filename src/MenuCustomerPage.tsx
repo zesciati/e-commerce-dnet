@@ -3,6 +3,7 @@
 // import { LockOutlinedIcon } from "@mui/icons-material/LockOutlined";
 // import { CheckBox } from "@mui/icons-material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import MenuBookIcon from '@mui/icons-material/MenuBook';
 import {
   Container,
   Paper,
@@ -30,18 +31,18 @@ const MenuCustomerPage = () => {
         <Avatar
           sx={{
             mx: "auto",
-            bgcolor: "secondary.main",
+            bgcolor: "info.main",
             textAlign: "center",
             mb: 1,
           }}
         >
-          <LockOutlinedIcon />
+          <MenuBookIcon />
         </Avatar>
-        <Typography component="h1" variant="h5" sx={{ textAlign: "center" }}>
+        {/* <Typography component="h1" variant="h5" sx={{ textAlign: "center" }}>
           Log In
-        </Typography>
+        </Typography> */}
         <Box component="form"  noValidate sx={{ mt: 1 }} /* onSubmit={handleSubmit} */>
-          <TextField
+          {/* <TextField
             placeholder="Enter username"
             fullWidth
             required
@@ -57,9 +58,9 @@ const MenuCustomerPage = () => {
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
-          />
+          /> */}
           <Button type="submit" variant="contained"  fullWidth sx={{mt: 1}} onClick={handleSubmit} >
-            Login
+            package purchase
           </Button>
         </Box>
       </Paper>

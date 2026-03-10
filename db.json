@@ -1,4 +1,22 @@
 {
+  "pembelianpaket":[
+    {
+      "id":"1",
+      "namaPaket":"Paket Basic",
+      "harga":"50.000"
+    },
+    {
+      "id":"2",
+      "namaPaket":"Paket Premium",
+      "harga":"150.000"
+    },
+    {
+      "id":"3",
+      "namaPaket":"Paket VIP",
+      "harga":"300.000"
+    }
+    
+  ],
   "posts": [
     {
       "id": "1",
@@ -26,6 +44,11 @@
     {
       "id": "2",
       "text": "a comment about post 1",
+      "postId": "1"
+    },
+    {
+      "id": "3",
+      "text": "a comment about post 1 about something with id3",
       "postId": "1"
     }
   ],

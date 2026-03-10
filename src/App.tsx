@@ -1,7 +1,7 @@
 import { Routes, Route, Navigate } from 'react-router-dom'
 import LoginPage from './LoginPage.tsx'
 import MenuCustomerPage from './MenuCustomerPage.tsx'
-import CustomerPackagePurchase from './CustomerPackagePurchase.tsx'
+import CustomerPackagePurchase from './CustomerPackagePurchasePage.tsx'
 
 const App = () => {
   return (
