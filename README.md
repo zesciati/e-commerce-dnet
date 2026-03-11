@@ -174,8 +174,7 @@ value tanpa onChange → input jadi FROZEN, tidak bisa diketik dan React tidak t
 # Edit data + Update data
 
 ```js
-
-  const [packageEdit, setPackageEdit] = useState("");
+const [packageEdit, setPackageEdit] = useState("");
 
 /* -------------------------------- edit data ------------------------------- */
 const editData = (data: React.ChangeEvent<any>) => {
@@ -243,7 +242,6 @@ const handleClick = async (e: React.ChangeEvent<any>) => {
   </button>
 </form>;
 
-
 // onClick={() => editData(user)}
 {
   users.map((user, index) => (
@@ -282,16 +280,43 @@ const handleClick = async (e: React.ChangeEvent<any>) => {
 }
 ```
 
+tampilan deleting data
+
+```tsx
+{
+  /* Modal Delete — preview */
+}
+<div className="mt-4">
+  {/* <p className="text-xs tracking-[0.2em] uppercase text-zinc-600 mb-4">
+            Preview Modal Hapus
+          </p> */}
+  <div className="border border-zinc-700 rounded-2xl p-6 bg-zinc-900">
+    <p className="text-sm font-medium text-zinc-100 mb-1">Hapus paket ini?</p>
+    <p className="text-xs text-zinc-500 mb-5">
+      Tindakan ini tidak bisa dibatalkan.
+    </p>
+    <div className="flex justify-end gap-2">
+      <button className="px-4 py-2 rounded-xl text-sm text-zinc-400 hover:text-zinc-100 border border-zinc-700 hover:border-zinc-500 transition">
+        Batal
+      </button>
+      <button className="px-4 py-2 rounded-xl text-sm bg-red-500 hover:bg-red-600 text-white font-medium transition">
+        Hapus
+      </button>
+    </div>
+  </div>
+</div>;
+```
 
 # Tak terpakai tapi jaga jaga
 
 ```js
-{/* <input
+{
+  /* <input
                 type="text"
                 defaultValue="Paket Basic"
                 className="w-full bg-zinc-800 border border-zinc-700 rounded-xl px-4 py-3 text-sm text-zinc-100 focus:outline-none focus:border-zinc-400 transition"
-              /> */}
+              /> */
+}
 ```
-
 
 ada 2 onsubmit jadi gagal

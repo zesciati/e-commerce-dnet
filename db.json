@@ -89,6 +89,26 @@
       "id": "2993",
       "namaPaket": "Paket Basic",
       "harga": "313213123"
+    },
+    {
+      "id": "05f6",
+      "namaPaket": "Paket Premium",
+      "harga": "12313"
+    },
+    {
+      "namaPaket": "Paket Basic",
+      "harga": "12321321",
+      "id": "03f3"
+    },
+    {
+      "id": "de17",
+      "namaPaket": "Paket VIP",
+      "harga": "12313"
+    },
+    {
+      "namaPaket": "Paket Premium",
+      "harga": "123123",
+      "id": "376c"
     }
   ],
   "posts": [
