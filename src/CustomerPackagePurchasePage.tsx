@@ -218,11 +218,7 @@ const CustomerPackagePurchasePage = () => {
               Edit Paket
             </p>
             <div className="flex flex-col gap-3">
-              {/* <input
-                type="text"
-                defaultValue="Paket Basic"
-                className="w-full bg-zinc-800 border border-zinc-700 rounded-xl px-4 py-3 text-sm text-zinc-100 focus:outline-none focus:border-zinc-400 transition"
-              /> */}
+              
               <select
                 name="cars"
                 id="package"
