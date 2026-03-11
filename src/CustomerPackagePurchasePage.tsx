@@ -1,60 +1,78 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-
+import { useLocation, useNavigate } from "react-router-dom";
 interface User {
   id: number;
   namaPaket: string;
   harga: string;
 }
-
+const packagePriceMap: Record<string, string> = {
+  "Paket Basic": "50000",
+  "Paket Premium": "150000",
+  "Paket VIP": "300000",
+};
+const formatNumber = (value: string): string => {
+  const digits = value.replace(/\D/g, "");
+  if (!digits) return "";
+  return digits.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+};
+const unformatNumber = (value: string): string => value.replace(/\./g, "");
 const CustomerPackagePurchasePage = () => {
   const API_URL = import.meta.env.VITE_API_URL;
-
-  // State untuk menampilkan data
+  const location = useLocation();
+  const navigate = useNavigate();
+  const selectedPackage =
+    (location.state as { selectedPackage?: string })?.selectedPackage ?? "";
   const [users, setUsers] = useState<User[]>([]);
-
-  // State untuk form TAMBAH
-  const [newNamaPaket, setNewNamaPaket] = useState("");
+  const [newNamaPaket, setNewNamaPaket] = useState(selectedPackage);
   const [newHarga, setNewHarga] = useState("");
-
-  // State untuk form EDIT
   const [namaPaket, setNamaPaket] = useState("");
   const [harga, setHarga] = useState("");
-  const [packageEdit, setPackageEdit] = useState<User | null>(null); 
+  const [packageEdit, setPackageEdit] = useState<User | null>(null);
   const [showEditModal, setShowEditModal] = useState(false);
-
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
   useEffect(() => {
     getAllData();
   }, []);
-
+  useEffect(() => {
+    if (selectedPackage) {
+      setNewNamaPaket(selectedPackage);
+      setNewHarga(formatNumber(packagePriceMap[selectedPackage] ?? ""));
+    }
+  }, [selectedPackage]);
+  const handleNewNamaPaketChange = (value: string) => {
+    setNewNamaPaket(value);
+    setNewHarga(
+      packagePriceMap[value] ? formatNumber(packagePriceMap[value]) : ""
+    );
+  };
+  const handleEditNamaPaketChange = (value: string) => {
+    setNamaPaket(value);
+    setHarga(
+      packagePriceMap[value] ? formatNumber(packagePriceMap[value]) : ""
+    );
+  };
   const getAllData = async () => {
     const response = await axios.get(API_URL);
     setUsers(response.data);
   };
-
-  /* ------------------------------- Add Data ------------------------------ */
   const handleClickAddData = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!newNamaPaket || !newHarga) return; 
-
+    if (!newNamaPaket || !newHarga) return;
+    await axios.post(API_URL, { namaPaket: newNamaPaket, harga: newHarga });
     setNewNamaPaket("");
     setNewHarga("");
     getAllData();
   };
-
-  /* -------------------------------- Edit Data ------------------------------- */
   const editData = (user: User) => {
     setPackageEdit(user);
     setNamaPaket(user.namaPaket);
-    setHarga(user.harga);
+    setHarga(formatNumber(user.harga));
     setShowEditModal(true);
   };
-
-  /* ------------------------------- Update Data ------------------------------ */
   const handleClickEditData = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!namaPaket || !harga || !packageEdit) return; 
-
+    if (!namaPaket || !harga || !packageEdit) return;
     await axios.put(API_URL + "/" + packageEdit.id, { namaPaket, harga });
     setNamaPaket("");
     setHarga("");
@@ -62,29 +80,47 @@ const CustomerPackagePurchasePage = () => {
     setShowEditModal(false);
     getAllData();
   };
-
-  const deleteData = async (id: React.FormEvent) => {
-    const response = await axios.delete(API_URL+"/"+id);
+  const confirmDelete = (user: User) => {
+    setPackageEdit(user);
+    setShowDeleteModal(true);
+  };
+  const handleClickDeleteData = async () => {
+    if (!packageEdit) return;
+    await axios.delete(API_URL + "/" + packageEdit.id);
+    setPackageEdit(null);
+    setShowDeleteModal(false);
     getAllData();
-  }
-
+  };
   return (
     <div
       style={{ fontFamily: "'DM Sans', sans-serif" }}
       className="min-h-screen bg-zinc-950 text-zinc-100 px-6 py-12"
     >
-      {/* Google Font */}
       <style>{`@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap');`}</style>
       <div className="max-w-2xl mx-auto">
-        {/* Header */}
+        {}
         <div className="mb-10">
+          <button
+            onClick={() => navigate("/menucustomer")}
+            className="flex items-center gap-2 text-xs text-zinc-500 hover:text-zinc-300 transition mb-6"
+          >
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path
+                d="M9 2L4 7L9 12"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+            Kembali ke menu
+          </button>
           <p className="text-xs tracking-[0.3em] uppercase text-zinc-500 mb-1">
-            Manajemen
+            Transaksi
           </p>
-          <h1 className="text-3xl font-semibold text-white">Paket</h1>
+          <h1 className="text-3xl font-semibold text-white">Pembelian Paket</h1>
         </div>
-
-        {/* Form Tambah */}
+        {}
         <div className="border border-zinc-800 rounded-2xl p-6 mb-6 bg-zinc-900/50">
           <p className="text-xs tracking-[0.2em] uppercase text-zinc-500 mb-5">
             Tambah Baru
@@ -93,7 +129,7 @@ const CustomerPackagePurchasePage = () => {
             <select
               className="w-full bg-zinc-900 border border-zinc-700 rounded-xl px-4 py-3 text-sm text-zinc-100 focus:outline-none focus:border-zinc-400 transition"
               value={newNamaPaket}
-              onChange={(e) => setNewNamaPaket(e.target.value)}
+              onChange={(e) => handleNewNamaPaketChange(e.target.value)}
             >
               <option value="" disabled className="hidden">
                 Please select package
@@ -103,11 +139,11 @@ const CustomerPackagePurchasePage = () => {
               <option value="Paket VIP">Paket VIP</option>
             </select>
             <input
-              type="number"
+              type="text"
               placeholder="Harga"
               className="w-full bg-zinc-900 border border-zinc-700 rounded-xl px-4 py-3 text-sm text-zinc-100 placeholder-zinc-600 focus:outline-none focus:border-zinc-400 transition"
               value={newHarga}
-              onChange={(e) => setNewHarga(e.target.value)}
+              onChange={(e) => setNewHarga(formatNumber(e.target.value))}
             />
             <button
               type="submit"
@@ -117,8 +153,7 @@ const CustomerPackagePurchasePage = () => {
             </button>
           </form>
         </div>
-
-        {/* Tabel Data */}
+        {}
         <div className="border border-zinc-800 rounded-2xl overflow-hidden bg-zinc-900/50">
           <div className="grid grid-cols-12 px-6 py-3 border-b border-zinc-800">
             <span className="col-span-1 text-xs tracking-[0.2em] uppercase text-zinc-600">
@@ -134,11 +169,10 @@ const CustomerPackagePurchasePage = () => {
               Aksi
             </span>
           </div>
-
           {users.map((user, index) => (
             <div
               key={user.id}
-              className="grid grid-cols-12 px-6 py-4 border-b border-zinc-800/60 last:border-0 hover:bg-zinc-800/30 transition group"
+              className="grid grid-cols-12 px-6 py-4 border-b border-zinc-800/60 last:border-0 hover:bg-zinc-800/30 transition"
             >
               <span
                 style={{ fontFamily: "'DM Mono', monospace" }}
@@ -162,7 +196,10 @@ const CustomerPackagePurchasePage = () => {
                 >
                   Edit
                 </button>
-                <button className="text-xs text-zinc-500 hover:text-red-400 transition" onClick={() => deleteData(user.id)}>
+                <button
+                  className="text-xs text-zinc-500 hover:text-red-400 transition"
+                  onClick={() => confirmDelete(user)}
+                >
                   Hapus
                 </button>
               </div>
@@ -170,8 +207,7 @@ const CustomerPackagePurchasePage = () => {
           ))}
         </div>
       </div>
-
-      {/* Modal Edit — Popup Overlay */}
+      {}
       {showEditModal && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm"
@@ -189,7 +225,7 @@ const CustomerPackagePurchasePage = () => {
                 <select
                   className="w-full bg-zinc-900 border border-zinc-700 rounded-xl px-4 py-3 text-sm text-zinc-100 focus:outline-none focus:border-zinc-400 transition"
                   value={namaPaket}
-                  onChange={(e) => setNamaPaket(e.target.value)}
+                  onChange={(e) => handleEditNamaPaketChange(e.target.value)}
                 >
                   <option value="" disabled className="hidden">
                     Please select package
@@ -199,9 +235,9 @@ const CustomerPackagePurchasePage = () => {
                   <option value="Paket VIP">Paket VIP</option>
                 </select>
                 <input
-                  type="number"
+                  type="text"
                   value={harga}
-                  onChange={(e) => setHarga(e.target.value)}
+                  onChange={(e) => setHarga(formatNumber(e.target.value))}
                   className="w-full bg-zinc-900 border border-zinc-700 rounded-xl px-4 py-3 text-sm text-zinc-100 placeholder-zinc-600 focus:outline-none focus:border-zinc-400 transition"
                 />
               </div>
@@ -224,8 +260,43 @@ const CustomerPackagePurchasePage = () => {
           </div>
         </div>
       )}
+      {}
+      {showDeleteModal && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm"
+          onClick={() => setShowDeleteModal(false)}
+        >
+          <div
+            className="w-full max-w-sm border border-zinc-700 rounded-2xl p-6 bg-zinc-900 shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <p className="text-sm font-medium text-zinc-100 mb-1">
+              Hapus paket ini?
+            </p>
+            <p className="text-xs text-zinc-500 mb-5">
+              <span className="text-zinc-300">{packageEdit?.namaPaket}</span> —
+              Tindakan ini tidak bisa dibatalkan.
+            </p>
+            <div className="flex justify-end gap-2">
+              <button
+                type="button"
+                onClick={() => setShowDeleteModal(false)}
+                className="px-4 py-2 rounded-xl text-sm text-zinc-400 hover:text-zinc-100 border border-zinc-700 hover:border-zinc-500 transition"
+              >
+                Batal
+              </button>
+              <button
+                type="button"
+                onClick={handleClickDeleteData}
+                className="px-4 py-2 rounded-xl text-sm bg-red-500 hover:bg-red-600 text-white font-medium transition"
+              >
+                Hapus
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
-
 export default CustomerPackagePurchasePage;
