@@ -7,10 +7,12 @@
 ☐ arrow select diperbaiki 
 ✔ preview edit @done(26-03-11 10:08)
   ✔ ubah tipe input paket basic @done(26-03-11 10:08)
-☐ klick edit
-☐ muncul popup modal edit
-☐ aksi edit dan update data dilakukan 
-☐ klik simpan 
-☐ data langsung terupdate 
+✔ klick edit @done(26-03-11 20:01)
+✔ muncul popup modal edit @done(26-03-11 20:01)
+✔ aksi edit dan update data dilakukan @done(26-03-11 20:01)
+✔ klik simpan @done(26-03-11 20:01)
+✔ data langsung terupdate @done(26-03-11 20:01)
 --
-☐ memisahkan add data dengan update/edit data function
+✔ memisahkan add data dengan update/edit data function @done(26-03-11 20:01)
+
+☐ membuat form handleClickDeleteData;

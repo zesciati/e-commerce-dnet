@@ -1,114 +1,19 @@
 {
   "pembelianpaket": [
     {
-      "namaPaket": "Paket Basic",
-      "harga": "50.000",
-      "id": "1"
-    },
-    {
-      "id": "2",
-      "namaPaket": "Paket Premium",
-      "harga": "150.000"
-    },
-    {
       "id": "3",
       "namaPaket": "Paket VIP",
       "harga": "300.000"
     },
     {
-      "id": "9dbc",
-      "namaPaket": "Paket Premium",
-      "harga": "12000"
-    },
-    {
-      "id": "1550",
+      "id": "97f1",
       "namaPaket": "Paket Basic",
-      "harga": "12232"
-    },
-    {
-      "id": "b1a7",
-      "namaPaket": "Paket VIP",
-      "harga": "12222112"
+      "harga": "50.000"
     },
     {
       "namaPaket": "Paket VIP",
-      "harga": "121213212322323232",
-      "id": "75cc"
-    },
-    {
-      "namaPaket": "Paket Premium",
-      "harga": "222222",
-      "id": "90d0"
-    },
-    {
-      "namaPaket": "Paket Premium",
-      "harga": "3232",
-      "id": "5d13"
-    },
-    {
-      "namaPaket": "Paket Premium",
-      "harga": "131313212312312",
-      "id": "e447"
-    },
-    {
-      "id": "9478",
-      "namaPaket": "Paket Premium",
-      "harga": "121"
-    },
-    {
-      "id": "a851",
-      "namaPaket": "Paket Premium",
-      "harga": "12000"
-    },
-    {
-      "id": "783c",
-      "namaPaket": "Paket Premium",
-      "harga": "2313123"
-    },
-    {
-      "id": "c3a6",
-      "namaPaket": "Paket Premium",
-      "harga": "222222"
-    },
-    {
-      "id": "c749",
-      "namaPaket": "Paket VIP",
-      "harga": "212212112"
-    },
-    {
-      "id": "e916",
-      "namaPaket": "Paket Premium",
-      "harga": "2222"
-    },
-    {
-      "id": "43f8",
-      "namaPaket": "Paket Premium",
-      "harga": "132123123"
-    },
-    {
-      "id": "2993",
-      "namaPaket": "Paket Basic",
-      "harga": "313213123"
-    },
-    {
-      "id": "05f6",
-      "namaPaket": "Paket Premium",
-      "harga": "12313"
-    },
-    {
-      "namaPaket": "Paket Basic",
-      "harga": "12321321",
-      "id": "03f3"
-    },
-    {
-      "id": "de17",
-      "namaPaket": "Paket VIP",
-      "harga": "12313"
-    },
-    {
-      "namaPaket": "Paket Premium",
-      "harga": "123123",
-      "id": "376c"
+      "harga": "150.000",
+      "id": "e54c"
     }
   ],
   "posts": [
