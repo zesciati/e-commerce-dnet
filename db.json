@@ -1,9 +1,9 @@
 {
   "pembelianpaket": [
     {
-      "id": "1",
       "namaPaket": "Paket Basic",
-      "harga": "50.000"
+      "harga": "50.000",
+      "id": "1"
     },
     {
       "id": "2",
@@ -31,14 +31,14 @@
       "harga": "12222112"
     },
     {
-      "id": "75cc",
       "namaPaket": "Paket VIP",
-      "harga": "1212"
+      "harga": "12121321232",
+      "id": "75cc"
     },
     {
-      "id": "90d0",
       "namaPaket": "Paket Premium",
-      "harga": "22"
+      "harga": "222222",
+      "id": "90d0"
     },
     {
       "namaPaket": "Paket Premium",
