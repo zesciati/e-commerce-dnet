@@ -32,7 +32,7 @@
     },
     {
       "namaPaket": "Paket VIP",
-      "harga": "12121321232",
+      "harga": "121213212322323232",
       "id": "75cc"
     },
     {
@@ -42,18 +42,53 @@
     },
     {
       "namaPaket": "Paket Premium",
-      "harga": "12313123123222222222",
+      "harga": "3232",
       "id": "5d13"
     },
     {
-      "id": "e447",
-      "namaPaket": "Paket Basic",
-      "harga": "1313132123"
+      "namaPaket": "Paket Premium",
+      "harga": "131313212312312",
+      "id": "e447"
     },
     {
       "id": "9478",
       "namaPaket": "Paket Premium",
       "harga": "121"
+    },
+    {
+      "id": "a851",
+      "namaPaket": "Paket Premium",
+      "harga": "12000"
+    },
+    {
+      "id": "783c",
+      "namaPaket": "Paket Premium",
+      "harga": "2313123"
+    },
+    {
+      "id": "c3a6",
+      "namaPaket": "Paket Premium",
+      "harga": "222222"
+    },
+    {
+      "id": "c749",
+      "namaPaket": "Paket VIP",
+      "harga": "212212112"
+    },
+    {
+      "id": "e916",
+      "namaPaket": "Paket Premium",
+      "harga": "2222"
+    },
+    {
+      "id": "43f8",
+      "namaPaket": "Paket Premium",
+      "harga": "132123123"
+    },
+    {
+      "id": "2993",
+      "namaPaket": "Paket Basic",
+      "harga": "313213123"
     }
   ],
   "posts": [

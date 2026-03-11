@@ -40,6 +40,7 @@ const CustomerPackagePurchasePage = () => {
   const [namaPaket, setNamaPaket] = useState("");
   const [harga, setHarga] = useState("");
   const [packageEdit, setPackageEdit] = useState("");
+  const [showEditModal, setShowEditModal] = useState(false);
 
   /* ------------------------------------ How to Call API ----------------------------------- */
 
@@ -71,6 +72,7 @@ const CustomerPackagePurchasePage = () => {
     setPackageEdit(data);
     setNamaPaket(data.namaPaket);
     setHarga(data.harga);
+    setShowEditModal(true);
   };
 
   /* ------------------------------- update data ------------------------------ */
@@ -90,15 +92,23 @@ const CustomerPackagePurchasePage = () => {
     getAllData();
   };
 
-  // handleClick
-  const handleClick = async (e: React.ChangeEvent<any>) => {
+  const handleClickAddData = async (e: React.ChangeEvent<any>) => {
     // pengecekan apakah tambah data || edit data
+    e.preventDefault();
+    if (namaPaket || harga) {
+      await addData(e);
+    } /* else {
+      await updateData(e);
+    } */
+  };
+
+  const handleClickEditData = async (e: React.ChangeEvent<any>) => {
     e.preventDefault();
     if (packageEdit) {
       await updateData(e);
-    } else {
+    } /*  else {
       await addData(e);
-    }
+    } */
   };
 
   return (
@@ -108,7 +118,6 @@ const CustomerPackagePurchasePage = () => {
     >
       {/* Google Font */}
       <style>{`@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap');`}</style>
-
       <div className="max-w-2xl mx-auto">
         {/* Header */}
         <div className="mb-10">
@@ -123,13 +132,13 @@ const CustomerPackagePurchasePage = () => {
           <p className="text-xs tracking-[0.2em] uppercase text-zinc-500 mb-5">
             Tambah Baru
           </p>
-          <form className="flex flex-col gap-3" onSubmit={handleClick}>
+          <form className="flex flex-col gap-3" onSubmit={handleClickAddData}>
             <select
               name="cars"
               id="package"
               className="w-full bg-zinc-900 border border-zinc-700 rounded-xl px-4 py-3 text-sm text-zinc-100 placeholder-zinc-600 focus:outline-none focus:border-zinc-400 transition"
-              value={namaPaket}
-              onChange={(e) => setNamaPaket(e.target.value)}
+              // value={namaPaket}
+              // onChange={(e) => setNamaPaket(e.target.value)}
             >
               <option value="" selected disabled className="hidden">
                 Please select package
@@ -142,8 +151,8 @@ const CustomerPackagePurchasePage = () => {
               type="number"
               placeholder="Harga"
               className="w-full bg-zinc-900 border border-zinc-700 rounded-xl px-4 py-3 text-sm text-zinc-100 placeholder-zinc-600 focus:outline-none focus:border-zinc-400 transition"
-              value={harga}
-              onChange={(e) => setHarga(e.target.value)}
+              // value={harga}
+              // onChange={(e) => setHarga(e.target.value)}
             />
             <button
               type="submit"
@@ -207,18 +216,20 @@ const CustomerPackagePurchasePage = () => {
             </div>
           ))}
         </div>
+      </div>
 
-        {/* Modal Edit — preview */}
-        <div className="mt-10">
-          <p className="text-xs tracking-[0.2em] uppercase text-zinc-600 mb-4">
-            Preview Modal Edit
+      {/* Modal Edit — preview */}
+      {/* {showEditModal &&} */}
+      <div className="mt-10">
+        {/* <p className="text-xs tracking-[0.2em] uppercase text-zinc-600 mb-4">
+          Preview Modal Edit
+        </p> */}
+        <div className="border border-zinc-700 rounded-2xl p-6 bg-zinc-900">
+          <p className="text-xs tracking-[0.2em] uppercase text-zinc-500 mb-5">
+            Edit Paket
           </p>
-          <div className="border border-zinc-700 rounded-2xl p-6 bg-zinc-900">
-            <p className="text-xs tracking-[0.2em] uppercase text-zinc-500 mb-5">
-              Edit Paket
-            </p>
+          <form action="" onSubmit={handleClickEditData}>
             <div className="flex flex-col gap-3">
-              
               <select
                 name="cars"
                 id="package"
@@ -235,7 +246,8 @@ const CustomerPackagePurchasePage = () => {
               </select>
               <input
                 type="number"
-                defaultValue="50000"
+                value={harga}
+                onChange={(e) => setHarga(e.target.value)}
                 className="w-full bg-zinc-900 border border-zinc-700 rounded-xl px-4 py-3 text-sm text-zinc-100 placeholder-zinc-600 focus:outline-none focus:border-zinc-400 transition"
               />
             </div>
@@ -247,14 +259,14 @@ const CustomerPackagePurchasePage = () => {
                 Simpan
               </button>
             </div>
-          </div>
+          </form>
         </div>
 
         {/* Modal Delete — preview */}
         <div className="mt-4">
-          <p className="text-xs tracking-[0.2em] uppercase text-zinc-600 mb-4">
+          {/* <p className="text-xs tracking-[0.2em] uppercase text-zinc-600 mb-4">
             Preview Modal Hapus
-          </p>
+          </p> */}
           <div className="border border-zinc-700 rounded-2xl p-6 bg-zinc-900">
             <p className="text-sm font-medium text-zinc-100 mb-1">
               Hapus paket ini?
