@@ -16,6 +16,7 @@
 
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { data } from "react-router-dom";
 
 const CustomerPackagePurchasePage = () => {
   const dummyData = [
@@ -38,12 +39,13 @@ const CustomerPackagePurchasePage = () => {
   // hook to adding data
   const [namaPaket, setNamaPaket] = useState("");
   const [harga, setHarga] = useState("");
+  const [packageEdit, setPackageEdit] = useState("");
 
   /* ------------------------------------ How to Call API ----------------------------------- */
-  
+
   useEffect(() => {
     getAllData();
-  }, []); 
+  }, []);
 
   const getAllData = async () => {
     const response = await axios.get(API_URL);
@@ -58,10 +60,45 @@ const CustomerPackagePurchasePage = () => {
       return;
     }
 
-    const response =  await axios.post(API_URL, { namaPaket, harga });
-    setNamaPaket('');
-    setHarga('');
+    const response = await axios.post(API_URL, { namaPaket, harga });
+    setNamaPaket("");
+    setHarga("");
     getAllData();
+  };
+
+  /* -------------------------------- edit data ------------------------------- */
+  const editData = (data: React.ChangeEvent<any>) => {
+    setPackageEdit(data);
+    setNamaPaket(data.namaPaket);
+    setHarga(data.harga);
+  };
+
+  /* ------------------------------- update data ------------------------------ */
+
+  const updateData = async (e: React.ChangeEvent<any>) => {
+    e.preventDefault();
+    if (!namaPaket || !harga) {
+      return;
+    }
+
+    const response = await axios.put(API_URL + "/" + packageEdit.id, {
+      namaPaket,
+      harga,
+    });
+    setNamaPaket("");
+    setHarga("");
+    getAllData();
+  };
+
+  // handleClick
+  const handleClick = async (e: React.ChangeEvent<any>) => {
+    // pengecekan apakah tambah data || edit data
+    e.preventDefault();
+    if (packageEdit) {
+      await updateData(e);
+    } else {
+      await addData(e);
+    }
   };
 
   return (
@@ -86,7 +123,7 @@ const CustomerPackagePurchasePage = () => {
           <p className="text-xs tracking-[0.2em] uppercase text-zinc-500 mb-5">
             Tambah Baru
           </p>
-          <form className="flex flex-col gap-3" onSubmit={addData}>
+          <form className="flex flex-col gap-3" onSubmit={handleClick}>
             <select
               name="cars"
               id="package"
@@ -157,7 +194,10 @@ const CustomerPackagePurchasePage = () => {
                 Rp{user.harga}
               </span>
               <div className="col-span-3 flex justify-end gap-3">
-                <button className="text-xs text-zinc-500 hover:text-zinc-100 transition">
+                <button
+                  className="text-xs text-zinc-500 hover:text-zinc-100 transition"
+                  onClick={() => editData(user)}
+                >
                   Edit
                 </button>
                 <button className="text-xs text-zinc-500 hover:text-red-400 transition">
@@ -178,15 +218,29 @@ const CustomerPackagePurchasePage = () => {
               Edit Paket
             </p>
             <div className="flex flex-col gap-3">
-              <input
+              {/* <input
                 type="text"
                 defaultValue="Paket Basic"
                 className="w-full bg-zinc-800 border border-zinc-700 rounded-xl px-4 py-3 text-sm text-zinc-100 focus:outline-none focus:border-zinc-400 transition"
-              />
+              /> */}
+              <select
+                name="cars"
+                id="package"
+                className="w-full bg-zinc-900 border border-zinc-700 rounded-xl px-4 py-3 text-sm text-zinc-100 placeholder-zinc-600 focus:outline-none focus:border-zinc-400 transition"
+                value={namaPaket}
+                onChange={(e) => setNamaPaket(e.target.value)}
+              >
+                <option value="" selected disabled className="hidden">
+                  Please select package
+                </option>
+                <option value="Paket Basic">Paket Basic</option>
+                <option value="Paket Premium">Paket Premium</option>
+                <option value="Paket VIP">Paket VIP</option>
+              </select>
               <input
                 type="number"
                 defaultValue="50000"
-                className="w-full bg-zinc-800 border border-zinc-700 rounded-xl px-4 py-3 text-sm text-zinc-100 focus:outline-none focus:border-zinc-400 transition"
+                className="w-full bg-zinc-900 border border-zinc-700 rounded-xl px-4 py-3 text-sm text-zinc-100 placeholder-zinc-600 focus:outline-none focus:border-zinc-400 transition"
               />
             </div>
             <div className="flex justify-end gap-2 mt-4">
