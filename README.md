@@ -36,3 +36,11 @@ FE : http://localhost:5173
 Json-server : http://localhost:3000
 
 
+# How to run
+
+1. git clone the project
+2. Open terminal (please make sure is on the root)
+3. run `npm install`
+4. on the same terminal run `npm run dev` for Frontend
+5. in new terminal run `npm install -g json-server`
+6. after step 5 run `json-server --watch db.json` for json server with data dummy to simulate Backend
